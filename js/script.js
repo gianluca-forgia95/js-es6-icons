@@ -12,7 +12,7 @@
   <div class="title">CAT</div>
 </div> -->
 */
-//Functions
+//FUNCTIONS
 
 //Funzione per stampare le icone in pagina con due parametri
 function printIcons(place, icons) {
@@ -25,7 +25,6 @@ function printIcons(place, icons) {
       <div class="title">${name}</div>
     </div>
     `;
-
     place.append(page);
   });
 }
@@ -42,6 +41,19 @@ function orderByCategory(element) {
 
 }
 
+//Funzione per inserire piu opzioni in un input html
+function pushOptions(target, options) {
+  options.forEach((item) => {
+
+    let options = ` <option value="${item}">${item}</option>  `;
+    target.append(options);
+
+  });
+}
+
+
+
+// const utili al programma
 const Icons = [
   {
     name: 'apple-alt',
@@ -153,44 +165,33 @@ const Icons = [
   },
 ];
 const IconsPage = $('.icons');
-
-
-
-//Coloro le icone per tipo
+const Select = $('#type');
 const Colors = [ 'red', 'yellow', 'orange'];
+
+
+
 //Ordino le categorie delle Icone
 const Categories = orderByCategory(Icons);
-console.log(Categories);
-
+//Coloro le icone
 const IconsColored = Icons.map((icon) => {
   let categoryIndex = Categories.indexOf(icon.category);
   let colorItem = Colors[categoryIndex];
-
   icon.color = colorItem;
-
   return icon;
-
-  //console.log(Colors[categoryIndex]);
 });
-//console.log(IconsColored);
+
 //Aggiungo i colori alle icone nella pagina
 IconsColored.forEach(( icon ) => {
   printIcons(IconsPage, IconsColored);
 });
 
 //Creo una select con i tipi di icone
-const select = $('#type');
-Categories.forEach((item) => {
+pushOptions(Select, Categories);
 
-  let option = ` <option value="${item}">${item}</option>  `;
-  select.append(option);
-
-});
-
-select.change(
+//Al change della select mostro le icone della categoria selezionata
+Select.change(
   function () {
     const optSelected = $(this).val();
-
     let iconFilter = IconsColored.filter((icon) =>  {
        return icon.category == optSelected;
      });
