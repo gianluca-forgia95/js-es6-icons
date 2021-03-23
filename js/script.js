@@ -151,7 +151,7 @@ const IconsColored = Icons.map((icon) => {
   //console.log(Colors[categoryIndex]);
 });
 //console.log(IconsColored);
-
+//Aggiungo i colori alle icone nella pagina
 IconsColored.forEach(( icon ) => {
   const {name, prefix, family, color} = icon;
   const page = `
@@ -162,4 +162,14 @@ IconsColored.forEach(( icon ) => {
   `;
 
   $('.icons').append(page);
+});
+
+//Creo una select con i tipi di icone
+let select = $('#type');
+Categories.forEach((item) => {
+
+  let option = ` <option value="${item}">${item}</option>  `;
+
+  select.append(option);
+
 });
