@@ -16,7 +16,6 @@
 
 //Funzione per stampare le icone in pagina con due parametri
 function printIcons(place, icons) {
-
   place.html('');
   icons.forEach(( icon ) => {
     const {name, prefix, family, color} = icon;
@@ -29,6 +28,18 @@ function printIcons(place, icons) {
 
     place.append(page);
   });
+}
+
+//Funzione per ordinare le categorie di un elemento
+function orderByCategory(element) {
+  const categories = [];
+  element.forEach((item, i) => {
+    if ( categories.includes(item.category) == false ) {
+      categories.push(item.category);
+    }
+  });
+  return categories;
+
 }
 
 const Icons = [
@@ -141,23 +152,15 @@ const Icons = [
     category: "animal"
   },
 ];
-
 const IconsPage = $('.icons');
-//Aggiungo le icons nella pagina
+
 
 
 //Coloro le icone per tipo
 const Colors = [ 'red', 'yellow', 'orange'];
-const Categories = [];
-
-Icons.forEach((item, i) => {
-  if ( Categories.includes(item.category) == false ) {
-    Categories.push(item.category);
-  }
-});
-
-//console.log(Categories);
-//console.log(Colors);
+//Ordino le categorie delle Icone
+const Categories = orderByCategory(Icons);
+console.log(Categories);
 
 const IconsColored = Icons.map((icon) => {
   let categoryIndex = Categories.indexOf(icon.category);
