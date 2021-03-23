@@ -14,6 +14,23 @@
 */
 //Functions
 
+//Funzione per stampare le icone in pagina con due parametri
+function printIcons(place, icons) {
+
+  place.html('');
+  icons.forEach(( icon ) => {
+    const {name, prefix, family, color} = icon;
+    const page = `
+     <div>
+      <i class="${family} ${prefix}${name}" style="color: ${color}"></i>
+      <div class="title">${name}</div>
+    </div>
+    `;
+
+    place.append(page);
+  });
+}
+
 const Icons = [
   {
     name: 'apple-alt',
@@ -124,6 +141,8 @@ const Icons = [
     category: "animal"
   },
 ];
+
+const IconsPage = $('.icons');
 //Aggiungo le icons nella pagina
 
 
@@ -153,15 +172,7 @@ const IconsColored = Icons.map((icon) => {
 //console.log(IconsColored);
 //Aggiungo i colori alle icone nella pagina
 IconsColored.forEach(( icon ) => {
-  const {name, prefix, family, color} = icon;
-  const page = `
-   <div>
-    <i class="${family} ${prefix}${name}" style="color: ${color}"></i>
-    <div class="title">${name}</div>
-  </div>
-  `;
-
-  $('.icons').append(page);
+  printIcons(IconsPage, IconsColored);
 });
 
 //Creo una select con i tipi di icone
@@ -177,21 +188,13 @@ select.change(
   function () {
     const optSelected = $(this).val();
 
-    const iconFilter = IconsColored.filter((icon) =>  {
+    let iconFilter = IconsColored.filter((icon) =>  {
        return icon.category == optSelected;
      });
-     //Svuoto l'html per poi riempirlo con solo le cose che ho filtrato 
-     $('.icons').html('');
-     iconFilter.forEach(( icon ) => {
-       const {name, prefix, family, color} = icon;
-       const page = `
-        <div>
-         <i class="${family} ${prefix}${name}" style="color: ${color}"></i>
-         <div class="title">${name}</div>
-       </div>
-       `;
-
-       $('.icons').append(page);
-     });
+     //Svuoto l'html per poi riempirlo con solo le cose che ho filtrato
+     if (iconFilter.length == 0 ) {
+       iconFilter = IconsColored;
+     }
+     printIcons(IconsPage, iconFilter);
   }
 );
