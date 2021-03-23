@@ -125,17 +125,7 @@ const Icons = [
   },
 ];
 //Aggiungo le icons nella pagina
-Icons.forEach(( icon ) => {
-  const {name, prefix, family, color} = icon;
-  const page = `
-   <div>
-    <i class="${family} ${prefix}${name}" style="color: ${color}"></i>
-    <div class="title">${name}</div>
-  </div>
-  `;
 
-  $('.icons').append(page);
-});
 
 //Coloro le icone per tipo
 const Colors = [ 'red', 'yellow', 'orange'];
@@ -146,9 +136,9 @@ Icons.forEach((item, i) => {
     Categories.push(item.category);
   }
 });
-//Creo nuovo array categorie
-console.log(Categories);
-console.log(Colors);
+
+//console.log(Categories);
+//console.log(Colors);
 
 const IconsColored = Icons.map((icon) => {
   let categoryIndex = Categories.indexOf(icon.category);
@@ -158,7 +148,18 @@ const IconsColored = Icons.map((icon) => {
 
   return icon;
 
-
-  console.log(Colors[categoryIndex]);
+  //console.log(Colors[categoryIndex]);
 });
-console.log(IconsColored);
+//console.log(IconsColored);
+
+IconsColored.forEach(( icon ) => {
+  const {name, prefix, family, color} = icon;
+  const page = `
+   <div>
+    <i class="${family} ${prefix}${name}" style="color: ${color}"></i>
+    <div class="title">${name}</div>
+  </div>
+  `;
+
+  $('.icons').append(page);
+});
