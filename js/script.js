@@ -155,7 +155,10 @@ const IconsColored = Icons.map((icon) => {
   let colorItem = Colors[categoryIndex];
 
   icon.color = colorItem;
-  console.log(icon);
+
+  return icon;
+
 
   console.log(Colors[categoryIndex]);
 });
+console.log(IconsColored);
