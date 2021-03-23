@@ -12,6 +12,8 @@
   <div class="title">CAT</div>
 </div> -->
 */
+//Functions
+
 const icons = [
   {
     name: 'apple-alt',
@@ -122,3 +124,15 @@ const icons = [
     category: "animal"
   },
 ];
+//Aggiungo le icons nella pagina
+icons.forEach(( icon ) => {
+  const {name, prefix, family} = icon;
+  const page = `
+   <div>
+    <i class="${family} ${prefix}${name}"></i>
+    <div class="title">${name}</div>
+  </div>
+  `;
+
+  $('.icons').append(page);
+});
