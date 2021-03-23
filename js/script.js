@@ -14,7 +14,7 @@
 */
 //Functions
 
-const icons = [
+const Icons = [
   {
     name: 'apple-alt',
     family: 'fas',
@@ -125,7 +125,7 @@ const icons = [
   },
 ];
 //Aggiungo le icons nella pagina
-icons.forEach(( icon ) => {
+Icons.forEach(( icon ) => {
   const {name, prefix, family} = icon;
   const page = `
    <div>
@@ -136,3 +136,15 @@ icons.forEach(( icon ) => {
 
   $('.icons').append(page);
 });
+
+//Coloro le icone per tipo
+const Colors = [ 'red', 'yellow', 'orange'];
+const Categories = [];
+
+Icons.forEach((item) => {
+  if ( Categories.includes(item.category) == false ) {
+    Categories.push(item.category);
+  }
+});
+//Creo nuovo array categorie
+console.log(Categories);
