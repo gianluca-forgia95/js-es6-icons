@@ -126,10 +126,10 @@ const Icons = [
 ];
 //Aggiungo le icons nella pagina
 Icons.forEach(( icon ) => {
-  const {name, prefix, family} = icon;
+  const {name, prefix, family, color} = icon;
   const page = `
    <div>
-    <i class="${family} ${prefix}${name}"></i>
+    <i class="${family} ${prefix}${name}" style="color: ${color}"></i>
     <div class="title">${name}</div>
   </div>
   `;
@@ -141,10 +141,21 @@ Icons.forEach(( icon ) => {
 const Colors = [ 'red', 'yellow', 'orange'];
 const Categories = [];
 
-Icons.forEach((item) => {
+Icons.forEach((item, i) => {
   if ( Categories.includes(item.category) == false ) {
     Categories.push(item.category);
   }
 });
 //Creo nuovo array categorie
 console.log(Categories);
+console.log(Colors);
+
+const IconsColored = Icons.map((icon) => {
+  let categoryIndex = Categories.indexOf(icon.category);
+  let colorItem = Colors[categoryIndex];
+
+  icon.color = colorItem;
+  console.log(icon);
+
+  console.log(Colors[categoryIndex]);
+});
